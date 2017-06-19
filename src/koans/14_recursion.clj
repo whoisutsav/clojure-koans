@@ -3,21 +3,31 @@
 
 (defn is-even? [n]
   (if (= n 0)
-    __
-    (___ (is-even? (dec n)))))
+    true
+    (not (is-even? (dec n)))))
 
 (defn is-even-bigint? [n]
   (loop [n   n
          acc true]
     (if (= n 0)
-      __
+      acc
       (recur (dec n) (not acc)))))
 
 (defn recursive-reverse [coll]
-  __)
+  (loop [ret '() remain coll]
+    (if (empty? remain) 
+      ret
+      (recur (conj ret (first remain)) (rest remain))
+      )
+    ))
 
 (defn factorial [n]
-  __)
+  (loop [acc 1 n n]
+    (if (< n 2)
+      acc
+      (recur (* acc n) (dec n))
+      )
+    ))
 
 (meditations
   "Recursion ends with a base case"
@@ -50,5 +60,7 @@
   "You can even deal with very large numbers"
   (< 1000000000000000000000000N (factorial 1000N))
 
-  "But what happens when the machine limits you?"
-  (< 1000000000000000000000000N (factorial 100003N)))
+  ;"But what happens when the machine limits you?"
+  ;(< 1000000000000000000000000N (factorial 100003N))
+  
+  )
